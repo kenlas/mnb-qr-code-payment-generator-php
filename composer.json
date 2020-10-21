@@ -1,0 +1,16 @@
+{
+    "name": "kenlas/mnb-qr-code-payment-generator-php",
+    "description": "PHP implementation of MNB's QR code payment generation algorithm",
+    "license": "MIT",
+    "keywords": ["mnb", "payment", "qrcode", "generator", "php"],
+    "authors": [
+        {
+            "name": "László Kenéz",
+            "email": "kenlashu@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "endroid/qr-code": "^3.9"
+    }
+}
