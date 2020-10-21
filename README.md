@@ -6,7 +6,7 @@ The complete guide can be found here: https://www.mnb.hu/letoltes/qr-kod-utmutat
 Uses `endroid/qr-code` for QR code image generation.
 
 ## Installation
-```php
+```
 composer require kenlas/mnb-qr-code-payment-generator-php
 ```
 
@@ -21,8 +21,8 @@ $data = $generator
     ->setName('Szabó Jenő')
     ->setIban($iban)
     ->setAmount(1000)
-    ->setExpiration(new DateTime())
-    ->setPaymentSituation('WTF')
+    ->setExpiration(new DateTime('now + 30 minutes'))
+    ->setPaymentSituation('GDSV')
     ->setMessage('hello')
     ->setShopId('1234')
     ->setDeviceId('POS')
@@ -68,9 +68,9 @@ setCharacterSet($charset) | Optional | 1 | For compatibility reasons only, defau
 setBic($bic) | Required | 11 | The bank's BIC code
 setName($name) | Required | 70 | The payer/beneficiary name
 setIban($iban) | Required | 28 | The payer/beneficiary IBAN account number
-setAmount($amount) | Optional | 12 | The payment amount, integer only
+setAmount($amount) | Optional | 12 | The payment amount in HUF, integers only
 setExpiration($date) | Required | - | PHP Date object for the expiration date
-setPaymentSituation($value) | Optional | 4 | Purpose code for the given payment situation
+setPaymentSituation($purposeCode) | Optional | 4 | Purpose code for the given payment situation (see https://www.iso20022.org/catalogue-messages/additional-content-messages/external-code-sets)
 setMessage($message) | Optional | 70 | Message
 setShopId($value) | Optional | 35 | Shop ID
 setDeviceId($value) | Optional | 35 | Device ID
