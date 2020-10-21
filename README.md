@@ -5,10 +5,16 @@ The complete guide can be found here: https://www.mnb.hu/letoltes/qr-kod-utmutat
 
 Uses `endroid/qr-code` for QR code image generation.
 
+
+## Requirements
+PHP 7.2
+
+
 ## Installation
 ```
 composer require kenlas/mnb-qr-code-payment-generator-php
 ```
+
 
 ## Example usage
 ```php
@@ -17,7 +23,7 @@ $iban = MnbQrCodePayment\Utils::hungarianBbanToIban('11773016-11111018');
 $generator = new MnbQrCodePayment\Generator();
 $data = $generator
     ->setMethod('HCT')
-    ->setBic('TAKBHUHB')
+    ->setBic('OTPVHUHB')
     ->setName('Szabó Jenő')
     ->setIban($iban)
     ->setAmount(1000)
@@ -46,17 +52,21 @@ You can save it as an image:
 $image->saveTo('my.png');
 ```
 
-Or you can get the QR code as base64 data URI:
+Or you can get the QR code as base64 encoded data URI:
 ```php
 echo $image->asDataUri();
 ```
 
-You can also use your own QR code renderer:
+You can also use your own QR code renderer: (see https://github.com/endroid/qr-code for more examples)
 ```php
 $customRenderer = new Endroid\QrCode\QrCode();
 $customRenderer->setSize(400);
+$customRenderer->setMargin(20);
+$customRenderer->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0]);
+$customRenderer->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0]);
 $image->setRenderer($customRenderer);
 ```
+
 
 ## MnbQrCodePayment\Generator available setters
 
@@ -80,11 +90,13 @@ setTransactionId($value) | Optional | 35 | Transaction ID
 setLoyaltyId($value) | Optional | 35 | Loyalty ID
 setNavVerificationCode($value) | Optional | 35 | NAV verification code
 
+
 ## MnbQrCodePayment\Utils available helper methods
 
 Method name | Description
 ----------- | -----------
 hungarianBbanToIban($bban) | Convert a hungarian BBAN (16 or 24 character lengths) to IBAN format
+
 
 ## MnbQrCodePayment\QrCodeImage available methods
 
@@ -96,6 +108,7 @@ setRenderer($renderer) | Set a new renderer - an instance of `Endroid\QrCode\QrC
 display() | Send appropriate headers and display QR code as an image (PNG format by default)
 saveTo($path) | Save QR code as an image file (PNG format by default)
 asDataUri() | Returns the QR code as a base64 encoded data URI - useful to pass to an `img` src attribute
+
 
 ## Contact
 If you have any questions feel free to contact me at kenlashu@gmail.com
