@@ -12,5 +12,10 @@
     "require": {
         "php": ">=7.2",
         "endroid/qr-code": "^3.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "MnbQrCodePayment\\": "src/"
+        }
     }
 }
