@@ -23,7 +23,7 @@ class Utils
             return '';
         }, $accountNumber . 'HU00');
 
-        $mod = function_exists('bcmod') ? bcmod($checkString, 97) : self::bcmod($checkString, 97);
+        $mod = function_exists('bcmod') ? bcmod($checkString, '97') : self::bcmod($checkString, 97);
         $code = (string) (98 - $mod);
 
         return sprintf(

@@ -75,7 +75,7 @@ Method name | Required/optional | Maximum length | Description
 setMethod($code) | Required | 3 | Must be `HCT` for transfer orders or `RTP` for payment request
 setVersion($version) | Optional | 3 | For future use only, defaults to `001`
 setCharacterSet($charset) | Optional | 1 | For compatibility reasons only, defaults to `1`
-setBic($bic) | Required | 11 | The bank's BIC code
+setBic($bic) | Required | 11 | The bank's BIC/SWIFT code
 setName($name) | Required | 70 | The payer/beneficiary name
 setIban($iban) | Required | 28 | The payer/beneficiary IBAN account number
 setAmount($amount) | Optional | 12 | The payment amount in HUF, integers only
@@ -91,11 +91,13 @@ setLoyaltyId($value) | Optional | 35 | Loyalty ID
 setNavVerificationCode($value) | Optional | 35 | NAV verification code
 
 
+
 ## MnbQrCodePayment\Utils available helper methods
 
 Method name | Description
 ----------- | -----------
 hungarianBbanToIban($bban) | Convert a hungarian BBAN (16 or 24 character lengths) to IBAN format
+
 
 
 ## MnbQrCodePayment\QrCodeImage available methods
@@ -108,6 +110,7 @@ setRenderer($renderer) | Set a new renderer - an instance of `Endroid\QrCode\QrC
 display() | Send appropriate headers and display QR code as an image (PNG format by default)
 saveTo($path) | Save QR code as an image file (PNG format by default)
 asDataUri() | Returns the QR code as a base64 encoded data URI - useful to pass to an `img` src attribute
+
 
 
 ## Contact
