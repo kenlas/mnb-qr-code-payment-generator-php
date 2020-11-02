@@ -282,9 +282,12 @@ class Generator
             if ($field === 'amount') {
                 $value =  empty($this->amount) ? '' : $this->currency . $this->amount;
             } else if ($field === 'expiration') {
-                $timezoneOffset = $this->expiration->getOffset();
-                $timezone = $timezoneOffset / 3600;
-                $value = $this->expiration->format('YmdHis') . $timezone;
+                $timezoneOffset = $this->expiration->getOffset() / 3600;
+                $value = sprintf(
+                    '%s+%d',
+                    $this->expiration->format('YmdHis'),
+                    (int) $timezoneOffset
+                );
             } else {
                 $value = $this->$field;
             }
